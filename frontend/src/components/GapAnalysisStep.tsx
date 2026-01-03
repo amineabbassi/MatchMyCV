@@ -1,5 +1,7 @@
 "use client";
 
+import { useMemo, useState } from "react";
+
 interface Gap {
   gap_type: string;
   description: string;
@@ -25,16 +27,24 @@ export function GapAnalysisStep({
   totalQuestions,
   onStartInterview,
 }: GapAnalysisStepProps) {
-  const allGaps = [
-    ...gapAnalysis.skills_gaps,
-    ...gapAnalysis.experience_gaps,
-    ...gapAnalysis.keywords_gaps,
-    ...gapAnalysis.metrics_gaps,
-  ];
+  const [showAllGaps, setShowAllGaps] = useState(false);
+
+  const allGaps = useMemo(
+    () => [
+      ...gapAnalysis.skills_gaps,
+      ...gapAnalysis.experience_gaps,
+      ...gapAnalysis.keywords_gaps,
+      ...gapAnalysis.metrics_gaps,
+    ],
+    [gapAnalysis]
+  );
 
   const highPriority = allGaps.filter((g) => g.importance === "high");
   const mediumPriority = allGaps.filter((g) => g.importance === "medium");
   const lowPriority = allGaps.filter((g) => g.importance === "low");
+
+  const visibleGaps = showAllGaps ? allGaps : allGaps.slice(0, 6);
+  const hiddenCount = Math.max(0, allGaps.length - visibleGaps.length);
 
   const score = gapAnalysis.match_score;
   const scoreColor = score >= 80 ? "#00a63e" : score >= 60 ? "#f59e0b" : "#dc2626";
@@ -105,7 +115,9 @@ export function GapAnalysisStep({
               </span>
             </div>
             <p className="text-[14px] text-[#525252] leading-relaxed">
-              We found <span className="font-medium text-[#0a0a0a]">{allGaps.length} gaps</span> between your CV and the job requirements. Answer a few questions to improve your score.
+              We found <span className="font-medium text-[#0a0a0a]">{allGaps.length} gaps</span> between your CV and the job requirements. We’ll ask{" "}
+              <span className="font-medium text-[#0a0a0a]">{totalQuestions}</span> questions{" "}
+              <span className="text-[#737373]">(some questions cover multiple gaps)</span>.
             </p>
           </div>
         </div>
@@ -138,11 +150,20 @@ export function GapAnalysisStep({
 
       {/* Gap list */}
       <div className="card overflow-hidden mb-6">
-        <div className="px-5 py-3 bg-[#fafafa] border-b border-black/[0.06]">
+        <div className="px-5 py-3 bg-[#fafafa] border-b border-black/[0.06] flex items-center justify-between gap-3">
           <h3 className="text-[13px] font-medium text-[#525252]">Identified gaps</h3>
+          {allGaps.length > 6 && (
+            <button
+              type="button"
+              onClick={() => setShowAllGaps((v) => !v)}
+              className="text-[12px] font-medium text-[#0066ff] hover:text-[#0052cc] transition-colors"
+            >
+              {showAllGaps ? "Show less" : `View all (${allGaps.length})`}
+            </button>
+          )}
         </div>
         <div className="divide-y divide-black/[0.04] max-h-64 overflow-y-auto">
-          {allGaps.slice(0, 6).map((gap, index) => (
+          {visibleGaps.map((gap, index) => (
             <div key={index} className="px-5 py-3.5 flex items-start gap-3 hover:bg-[#fafafa]/50 transition-colors">
               <span className={`
                 mt-1.5 w-2 h-2 rounded-full flex-shrink-0
@@ -160,11 +181,15 @@ export function GapAnalysisStep({
               </span>
             </div>
           ))}
-          {allGaps.length > 6 && (
+          {!showAllGaps && hiddenCount > 0 && (
             <div className="px-5 py-3 text-center bg-[#fafafa]/50">
-              <span className="text-[12px] text-[#a3a3a3]">
-                +{allGaps.length - 6} more gaps
-              </span>
+              <button
+                type="button"
+                onClick={() => setShowAllGaps(true)}
+                className="text-[12px] text-[#737373] hover:text-[#0a0a0a] transition-colors"
+              >
+                +{hiddenCount} more gaps
+              </button>
             </div>
           )}
         </div>
@@ -176,7 +201,7 @@ export function GapAnalysisStep({
           <div>
             <h3 className="text-[15px] font-medium text-[#0a0a0a] mb-1">Ready to improve your score?</h3>
             <p className="text-[13px] text-[#737373]">
-              Answer {totalQuestions} quick questions to fill these gaps
+              Answer {totalQuestions} quick questions <span className="text-[#a3a3a3]">(grouped to cover multiple gaps)</span>
             </p>
           </div>
           <button 

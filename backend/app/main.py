@@ -299,3 +299,27 @@ async def get_session_status(session_id: str):
         "total_questions": len(session.questions),
         "has_generated_cv": session.generated_cv_url is not None
     }
+
+
+@app.get("/api/v1/session/{session_id}/data")
+async def get_session_data(session_id: str):
+    """
+    Get session data needed to restore UI state after refresh.
+    Note: protected only by session_id (UUID). If you add auth later, lock this down.
+    """
+    session = get_session(session_id)
+    if not session:
+        raise HTTPException(status_code=404, detail="Session not found")
+
+    return {
+        "id": session.id,
+        "status": session.status,
+        "job_description": session.job_description,
+        "gap_analysis": session.gap_analysis.model_dump() if session.gap_analysis else None,
+        "questions": [q.model_dump() for q in (session.questions or [])],
+        "current_question_index": session.current_question_index,
+        "has_generated_cv": session.generated_cv_url is not None,
+        "generated_cv_url": session.generated_cv_url,
+        "generated_docx_url": session.generated_docx_url,
+        "comparison": session.cv_comparison.model_dump() if session.cv_comparison else None,
+    }

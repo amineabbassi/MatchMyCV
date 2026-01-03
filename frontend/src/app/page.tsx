@@ -9,6 +9,7 @@ import { InterviewStep } from "@/components/InterviewStep";
 import { GenerateStep } from "@/components/GenerateStep";
 import {
   createSession,
+  getSessionData,
   uploadCV,
   analyzeCV,
   getQuestions,
@@ -61,7 +62,27 @@ export default function Home() {
             const res = await fetch(`/api/v1/session/${savedId}`);
             if (res.ok) {
               setSessionId(savedId);
-              setCurrentStep(step || 0);
+              // Restore full UI state (prevents blank screen on refresh)
+              try {
+                const data = await getSessionData(savedId);
+                if (data.gap_analysis) setGapAnalysis(data.gap_analysis);
+                if (Array.isArray(data.questions)) setQuestions(data.questions);
+                if (typeof data.current_question_index === 'number') setCurrentQuestionIndex(data.current_question_index);
+                if (data.comparison) setComparison(data.comparison);
+                if (data.has_generated_cv) setIsGenerated(true);
+                // If the saved step requires data that doesn't exist, fall back gracefully
+                const desiredStep = step || 0;
+                if (desiredStep >= 2 && !data.gap_analysis) {
+                  setCurrentStep(1);
+                } else if (desiredStep >= 3 && (!data.questions || data.questions.length === 0)) {
+                  setCurrentStep(2);
+                } else {
+                  setCurrentStep(desiredStep);
+                }
+              } catch {
+                // If restore fails, at least land in a non-empty step
+                setCurrentStep(Math.min(step || 0, 1));
+              }
               return;
             }
           } catch {

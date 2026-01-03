@@ -21,6 +21,11 @@ export async function createSession(): Promise<{ session_id: string }> {
   return handleResponse(res, 'Unable to start session. Please refresh.');
 }
 
+export async function getSessionData(sessionId: string) {
+  const res = await fetch(`${API_BASE}/session/${sessionId}/data`);
+  return handleResponse(res, 'Failed to restore session. Please refresh.');
+}
+
 export async function uploadCV(sessionId: string, file: File) {
   const formData = new FormData();
   formData.append('session_id', sessionId);

@@ -1,0 +1,113 @@
+{
+  "generated_at": "2026-01-03T14:44:29.037211Z",
+  "integrity": {
+    "original_jobs": 5,
+    "optimized_jobs": 5,
+    "missing_jobs": [],
+    "date_changes": [],
+    "contact_mismatches": {}
+  },
+  "bullets": {
+    "total_bullets": 10,
+    "action_verb_ratio": 0.7,
+    "metric_ratio": 0.6,
+    "banned_phrase_hits": [
+      {
+        "phrase": "driven",
+        "bullet": "Contributed to a SaaS platform integrating AI-driven features, automating lead generation and enhancing user engagement by 25%."
+      }
+    ]
+  },
+  "keywords": {
+    "top_keywords": [
+      "startup",
+      "architecture",
+      "building",
+      "fintech",
+      "junior",
+      "knowledge",
+      "payment",
+      "projects",
+      "strong",
+      "accessible",
+      "actions",
+      "application",
+      "architectural",
+      "backend",
+      "best",
+      "businesses",
+      "ci/cd",
+      "code",
+      "collaborate",
+      "collaboration",
+      "communication",
+      "compliance",
+      "container",
+      "contributions",
+      "cross-functional"
+    ],
+    "present_count": 8,
+    "missing_count": 17,
+    "present": [
+      "startup",
+      "architecture",
+      "fintech",
+      "payment",
+      "strong",
+      "application",
+      "backend",
+      "ci/cd"
+    ],
+    "missing": [
+      "building",
+      "junior",
+      "knowledge",
+      "projects",
+      "accessible",
+      "actions",
+      "architectural",
+      "best",
+      "businesses",
+      "code",
+      "collaborate",
+      "collaboration",
+      "communication",
+      "compliance",
+      "container",
+      "contributions",
+      "cross-functional"
+    ],
+    "coverage_ratio": 0.32
+  },
+  "comparison": {
+    "original_score": 75,
+    "optimized_score": 86,
+    "gaps_addressed": [
+      "Experience with Redis for high-performance data handling",
+      "Knowledge of security best practices, specifically PCI-DSS compliance and OAuth 2.0",
+      "Experience leading technical projects and mentoring junior developers",
+      "Proven track record of building and scaling microservices architecture",
+      "Experience with payment systems such as Stripe or PayPal",
+      "Experience in a startup environment"
+    ],
+    "gaps_remaining": [
+      "Experience with GraphQL",
+      "Lack of specific keywords related to event-driven architecture",
+      "No mention of contributions to open-source projects"
+    ],
+    "improvements": [
+      "Rewrote Kothon Tech GmbH bullet to show impact with metrics",
+      "Added Redis and OAuth 2.0 to skills",
+      "Highlighted experience with Stripe in Kothon Tech GmbH",
+      "Emphasized microservices architecture experience in Metta Startup Studio",
+      "Added PostgreSQL to skills",
+      "Reordered skills to prioritize job-relevant ones"
+    ]
+  },
+  "verdict": {
+    "passes_integrity": true,
+    "good_bullets": false,
+    "good_keyword_coverage": false,
+    "passes_demo_bar": false
+  }
+}

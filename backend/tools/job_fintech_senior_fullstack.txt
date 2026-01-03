@@ -1,0 +1,37 @@
+Senior Full Stack Engineer - FinTech Startup
+
+Location: Remote (EU timezone preferred)
+Salary: €70,000 - €90,000
+
+About Us:
+We're a fast-growing FinTech startup building the next generation of payment infrastructure for European businesses.
+
+Requirements:
+- 5+ years of experience in full-stack development
+- Strong proficiency in React, Node.js, and TypeScript
+- Experience with PostgreSQL and Redis for high-performance data handling
+- Proven track record of building and scaling microservices architecture
+- Experience with payment systems (Stripe, PayPal, or similar)
+- Knowledge of security best practices (PCI-DSS compliance, encryption, OAuth 2.0)
+- Experience with message queues (RabbitMQ, Kafka)
+- CI/CD pipeline experience (GitHub Actions, Jenkins)
+- Experience leading technical projects and mentoring junior developers
+- Strong communication skills for cross-functional collaboration
+
+Nice to Have:
+- Experience with GraphQL
+- Knowledge of Kubernetes and container orchestration
+- Experience with event-driven architecture
+- Contributions to open-source projects
+- Experience in a startup environment
+
+Responsibilities:
+- Design and implement scalable backend services
+- Build responsive and accessible frontend interfaces
+- Optimize application performance and reduce latency
+- Participate in code reviews and architectural decisions
+- Mentor junior team members
+- Collaborate with product and design teams
+- On-call rotation for production issues
+
+

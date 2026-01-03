@@ -1,0 +1,119 @@
+{
+  "personal_info": {
+    "name": "MOHAMED AMINE ABBASSI",
+    "email": "a.abbassi23072@pi.tn",
+    "phone": "+21654051820",
+    "location": "Tunis, Tunisia",
+    "linkedin": "https://www.linkedin.com/in/amine-abbassi-7a9543175"
+  },
+  "summary": "Experienced Full Stack Engineer with a strong background in developing scalable applications using React, Node.js, and TypeScript. Proven expertise in integrating payment systems and optimizing backend performance for FinTech solutions.",
+  "experience": [
+    {
+      "company": "Kothon Tech GmbH",
+      "title": "Software Engineer",
+      "start_date": "05/2025",
+      "end_date": "10/2025",
+      "responsibilities": [],
+      "achievements": [
+        "Developed a cross-platform mobile application enhancing user experience and integrating secure payment processing with Stripe, resulting in a 30% increase in user engagement.",
+        "Optimized backend performance for scalability, reducing server response time by 40%."
+      ]
+    },
+    {
+      "company": "Metta Startup Studio",
+      "title": "AI Software Engineer",
+      "start_date": "07/2025",
+      "end_date": "10/2025",
+      "responsibilities": [],
+      "achievements": [
+        "Contributed to a SaaS platform integrating AI-driven features, automating lead generation and enhancing user engagement by 25%.",
+        "Improved system performance and data flow, supporting intelligent business insights and increasing platform efficiency by 20%."
+      ]
+    },
+    {
+      "company": "Polytech-Intl",
+      "title": "Computer Vision Developer",
+      "start_date": "09/2024",
+      "end_date": "12/2024",
+      "responsibilities": [],
+      "achievements": [
+        "Developed a Facial Emotion Recognition system using CNN and VGG19 models, achieving 85% accuracy in emotion detection.",
+        "Created a user-friendly web interface for image uploads and prediction visualization, enhancing usability and interpretability."
+      ]
+    },
+    {
+      "company": "NEXT STEP",
+      "title": "Software Engineer",
+      "start_date": "07/2024",
+      "end_date": "09/2024",
+      "responsibilities": [],
+      "achievements": [
+        "Developed an intuitive web interface for the Nuclei vulnerability scanner, simplifying security scan configuration and execution.",
+        "Enabled users with limited security experience to manage templates and visualize results, improving accessibility and user satisfaction."
+      ]
+    },
+    {
+      "company": "Meki Business and IT Solutions",
+      "title": "Web Developer",
+      "start_date": "05/2024",
+      "end_date": "08/2024",
+      "responsibilities": [],
+      "achievements": [
+        "Designed a modern UI for a talent hiring platform, aligning UX/UI with brand messaging and increasing user engagement by 15%.",
+        "Enhanced conversion-focused workflows, simplifying navigation and improving overall platform usability."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Faculty of Sciences of Tunis(FST)",
+      "degree": "Bachelor",
+      "field": "Computer Science",
+      "graduation_date": "2020-2023"
+    },
+    {
+      "institution": "Polytech-Intl",
+      "degree": "Master",
+      "field": "Software Engineering",
+      "graduation_date": "2023-2025"
+    }
+  ],
+  "skills": [
+    "React",
+    "Node.js",
+    "TypeScript",
+    "PostgreSQL",
+    "Redis",
+    "Microservices Architecture",
+    "Stripe",
+    "OAuth 2.0",
+    "Kafka",
+    "CI/CD pipelines",
+    "C/C++",
+    "Java",
+    "JavaScript",
+    "Python",
+    "HTML5",
+    "CSS3",
+    "Spring Boot",
+    "Next.js",
+    "Angular",
+    "Express.js",
+    "Django",
+    "MongoDB",
+    "MySQL",
+    "SQL",
+    "AWS",
+    "Git",
+    "Docker",
+    "Kubernetes",
+    "Jenkins"
+  ],
+  "certifications": [],
+  "languages": [
+    "English",
+    "French",
+    "Arabic"
+  ],
+  "raw_text": "MOHAMED AMINE ABBASSI\nSoftware Engineer\n+21654051820 amine-abbassi\n25 Taherlekhmiri St,\na.abbassi23072@pi.tn\nTunis,Tunisia\nEDUCATION\nEXPERIENCE\nBachelor of Computer Science\nSoftware Engineer 05/2025 – 10/2025\nFaculty of Sciences of Tunis(FST)\nKothon Tech GmbH l Munich, Germany\n2020-2023\nDeveloped a cross-platform mobile application for Kothon Tech, focusing on delivering a seamless\nMaster in Software Engineering and responsive user experience. Implemented key features, integrated secure payment processing\nwith Stripe, and optimized backend performance for scalability. Collaborated closely with designers\nPolytech-Intl\nand backend engineers to ensure smooth API communication and a consistent user interface across\n2023-2025\nplatforms.\nTech Stack: React Native,Node.js,Express.js,MongoDB,Stripe,AWS\nSKILLS\nAI Software Engineer 07/2025 – 10/2025\nMetta Startup Studio l Ericeira, Lisbon, Portugal\nProgramming languages:\nContributed to the development of a Marketing and Sales SaaS platform designed for early-stage\nC/C++, java, javascript, typescript,\nfounders, integrating AI-driven features to automate lead generation and enhance user\npython\nengagement. Focused on building scalable and efficient backend logic while developing a\nWeb Technologies: responsive, user-friendly interface. Collaborated on improving data flow and system performance\nto support intelligent business insights.\nHTML5, CSS3, Spring Boot,\nTech Stack: Next.js,Node.js,Express.js,Supabase,TypeScript,OpenAIAPI\nRESTful APIs, JSON, WebSockets\nComputer Vision Developer\n09/2024-12/2024\nFrameworks:\nPolytech-Intl | Tunis, Tunisia\nReact, Next.js, Angular, Node.js,\nDeveloped a Facial Emotion Recognition system using Python and Django, capable of detecting and\nExpress.js, Django, React Native,\nclassifying human emotions from facial expressions captured in natural (“in-the-wild”)\nBootstrap, Tailwind CSS environments. The application integrates deep learning models, including a Convolutional Neural\nNetwork (CNN) and a VGG19-based model, trained on the FER2013 dataset to recognize multiple\nDatabases:\nemotions such as happiness, sadness, anger, and surprise. The project included a web interface for\nMongoDB, My SQL, Postgre SQL, SQL\nuploading images and visualizing predictions, with a focus on model performance, usability, and\ninterpretability.\nServer, Supabase, Firebase\nTech Stack: Python,Django,Num Py,Pandas,Matplotlib,FER2013 Dataset\nDev Ops & Cloud:\nSoftware Engineer 07/2024-09/2024\nAWS, Git, Git Hub/Git Lab, Docker,\nNEXT STEP | Tunis, Tunisia\nKubernetes, Jenkins, Kafka, CI/CD\npipelines Developed an intuitive web interface for the Nuclei vulnerability scanner, aimed at simplifying the\nprocess of configuring and executing security scans. The platform allows users to easily select,\nTesting & Quality Tools:\ncustomize, and manage Nuclei templates, visualize scan results, and generate detailed security\nSonar Qube, Selenium, JMeter, reports. My focus was on making the tool accessible even to users with limited security experience,\nensuring a clear, informative, and user-friendly interface.\nBlaze Meter\nTech Stack: React.js,Node.js,Express.js,MongoDB,Flowbite,Tailwind CSS\nOther Tools & Concepts:\nWeb Developer 05/2024-08/2024\nStripe API, Webhooks, Agile/Scrum,\nPostman, Jira Meki Business and IT Solutions | Tunis, Tunisia\nDesigned and implemented a modern, conversion-oriented user interface for a talent hiring\nplatform connecting companies with elite Tunisian professionals. The project focused on aligning\nLANGUAGE\nthe platform’s UX/UI design with the brand’s messaging, ensuring a cohesive visual identity and\nseamless user experience. I enhanced conversion-focused workflows and created intuitive\nEnglish\ninterfaces tailored to the needs of different user roles, simplifying navigation and improving overall\nengagement across the platform.\nFrench\nTech Stack: React.js,Node.js,Express.js,MongoDB,Flowbite,Tailwind CSS\nArabic\nhttps://www.linkedin.com/in/amine-abbassi-7a9543175"
+}

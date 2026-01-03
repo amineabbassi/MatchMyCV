@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: matchmycv-backend
+    env: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      # Required:
+      - key: OPENAI_API_KEY
+        sync: false
+      # CORS: allow your Vercel domain(s)
+      - key: ALLOWED_ORIGINS
+        value: http://localhost:3000
+      # Optional: allow Vercel previews
+      - key: ALLOWED_ORIGIN_REGEX
+        value: ^https://.*\\.vercel\\.app$
+
+

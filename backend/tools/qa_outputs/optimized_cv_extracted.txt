@@ -1,0 +1,46 @@
+MOHAMEDAMINEABBASSIa.abbassi23072@pi.tn+21654051820Tunis,Tunisialinkedin.com/in/amine-abbassi-7a9543175
+PROFESSIONAL SUMMARY-----------------------------------------------------------------------------------------------
+Experienced Full Stack Engineer with a strong background in developing scalable applications using React,
+Node.js, and TypeScript. Proven expertise in integrating payment systems and optimizing backend performance
+for Fin Tech solutions.
+PROFESSIONAL EXPERIENCE-----------------------------------------------------------------------------------------------
+Software Engineer | Kothon Tech GmbH
+05/2025 – 10/2025
+ Developed a cross-platform mobile application enhancing user experience and integrating secure payment
+processing with Stripe, resulting in a 30% increase in user engagement.
+ Optimized backend performance for scalability, reducing server response time by 40%.
+AI Software Engineer | Metta Startup Studio
+07/2025 – 10/2025
+ Contributed to a SaaS platform integrating AI-driven features, automating lead generation and enhancing
+user engagement by 25%.
+ Improved system performance and data flow, supporting intelligent business insights and increasing platform
+efficiency by 20%.
+Computer Vision Developer | Polytech-Intl
+09/2024 – 12/2024
+ Developed a Facial Emotion Recognition system using CNN and VGG19 models, achieving 85% accuracy
+in emotion detection.
+ Created a user-friendly web interface for image uploads and prediction visualization, enhancing usability and
+interpretability.
+Software Engineer | NEXT STEP
+07/2024 – 09/2024
+ Developed an intuitive web interface for the Nuclei vulnerability scanner, simplifying security scan
+configuration and execution.
+ Enabled users with limited security experience to manage templates and visualize results, improving
+accessibility and user satisfaction.
+Web Developer | Meki Business and IT Solutions
+05/2024 – 08/2024
+ Designed a modern UI for a talent hiring platform, aligning UX/UI with brand messaging and increasing user
+engagement by 15%.
+ Enhanced conversion-focused workflows, simplifying navigation and improving overall platform usability.
+EDUCATION-----------------------------------------------------------------------------------------------
+Bachelor in Computer Science | Faculty of Sciences of Tunis(FST) (2020-2023)
+Master in Software Engineering | Polytech-Intl (2023-2025)
+TECHNICAL SKILLS-----------------------------------------------------------------------------------------------
+Languages: TypeScript, C/C++, Java, Java Script, Python
+Frontend: React, Next.js, Angular Backend: Node.js, Spring Boot, Express.js, Django
+Databases: Postgre SQL, Redis, MongoDB, My SQL
+Dev Ops & Cloud: CI/CD pipelines, AWS, Docker, Kubernetes, Jenkins
+Tools: Git
+Other: Microservices Architecture, Stripe, OAuth 2.0, Kafka, HTML5, CSS3, SQL
+LANGUAGES-----------------------------------------------------------------------------------------------
+English  French  Arabic

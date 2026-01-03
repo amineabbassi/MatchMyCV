@@ -1,0 +1,17 @@
+We are hiring a Full-Stack Engineer to build and scale a B2B SaaS product.
+
+Responsibilities:
+- Build frontend features in React / Next.js with TypeScript
+- Design and implement APIs in Python (FastAPI preferred)
+- Work with Postgres and performance optimization
+- Deploy services using Docker and cloud infrastructure (AWS)
+- Implement CI/CD (GitHub Actions)
+- Monitoring and reliability improvements
+
+Requirements:
+- 3+ years experience building web applications
+- Strong TypeScript and Python skills
+- Experience with SQL databases (PostgreSQL)
+- Ability to communicate clearly and work cross-functionally
+
+

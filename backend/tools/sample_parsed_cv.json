@@ -1,0 +1,71 @@
+{
+  "personal_info": {
+    "name": "Alex Martin",
+    "email": "alex.martin@email.com",
+    "phone": "+33 6 12 34 56 78",
+    "location": "Paris, FR",
+    "linkedin": "linkedin.com/in/alexmartin"
+  },
+  "summary": "Full-stack engineer with 5+ years building B2B web apps. Experienced with React/Next.js, FastAPI, Postgres, and cloud deployments. Focused on measurable impact: performance, reliability, and developer velocity.",
+  "experience": [
+    {
+      "company": "Acme SaaS",
+      "title": "Full-Stack Engineer",
+      "start_date": "2022-03",
+      "end_date": "Present",
+      "responsibilities": [
+        "Built and maintained customer-facing features using React and TypeScript.",
+        "Owned API development with FastAPI and integrated third-party services."
+      ],
+      "achievements": [
+        "Reduced page load time by 35% by optimizing server-side rendering and caching.",
+        "Automated CI pipelines, cutting deployment time from 30 minutes to 8 minutes."
+      ]
+    },
+    {
+      "company": "DataWorks",
+      "title": "Software Engineer",
+      "start_date": "2020-01",
+      "end_date": "2022-02",
+      "responsibilities": [
+        "Implemented REST APIs and background jobs for data ingestion.",
+        "Collaborated with product and design to ship iterative improvements."
+      ],
+      "achievements": [
+        "Improved ETL reliability from 92% to 99.5% through retries and monitoring.",
+        "Designed a Postgres schema and indexes that reduced query latency by 40%."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Université de Technologie",
+      "degree": "MSc",
+      "field": "Computer Science",
+      "graduation_date": "2019"
+    }
+  ],
+  "skills": [
+    "TypeScript",
+    "JavaScript",
+    "React",
+    "Next.js",
+    "FastAPI",
+    "Python",
+    "PostgreSQL",
+    "Docker",
+    "AWS",
+    "GitHub Actions",
+    "Supabase"
+  ],
+  "certifications": [
+    "AWS Certified Cloud Practitioner"
+  ],
+  "languages": [
+    "French",
+    "English"
+  ],
+  "raw_text": "Sample CV for audit harness."
+}
+
+

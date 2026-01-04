@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Steps } from "@/components/Steps";
 import { UploadStep } from "@/components/UploadStep";
 import { JobDescriptionStep } from "@/components/JobDescriptionStep";
@@ -49,56 +49,107 @@ export default function Home() {
   const [isGenerated, setIsGenerated] = useState(false);
   const [comparison, setComparison] = useState<CVComparison | null>(null);
 
+  // Single in-flight session init promise (prevents "Continue does nothing" while session is still loading)
+  const sessionInitPromiseRef = useRef<Promise<string> | null>(null);
+
+  const fetchWithTimeout = useCallback(async (input: RequestInfo | URL, init?: RequestInit, timeoutMs: number = 8000) => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      return await fetch(input, { ...(init || {}), signal: controller.signal });
+    } finally {
+      clearTimeout(timeoutId);
+    }
+  }, []);
+
+  const ensureSession = useCallback(async (): Promise<string> => {
+    if (sessionId) return sessionId;
+    if (sessionInitPromiseRef.current) return await sessionInitPromiseRef.current;
+
+    sessionInitPromiseRef.current = (async () => {
+      // Try restore from localStorage (fast path)
+      try {
+        const savedSession = localStorage.getItem("matchmycv_session");
+        if (savedSession) {
+          const parsed = JSON.parse(savedSession);
+          const savedId = parsed?.sessionId as string | undefined;
+          if (savedId) {
+            // Do not block on server validation here (Render cold starts can take ~60s).
+            // We'll optimistically reuse the id and recover on 404 during real actions.
+            setSessionId(savedId);
+            return savedId;
+          }
+        }
+      } catch {
+        // ignore and create new
+      }
+
+      // Create new session with a couple retries (cold starts / transient network)
+      let lastErr: any = null;
+      for (let attempt = 0; attempt < 3; attempt++) {
+        try {
+          const { session_id } = await createSession();
+          setSessionId(session_id);
+          localStorage.setItem("matchmycv_session", JSON.stringify({ sessionId: session_id, step: 0 }));
+          return session_id;
+        } catch (e) {
+          lastErr = e;
+          await new Promise((r) => setTimeout(r, 600 * (attempt + 1)));
+        }
+      }
+      throw lastErr;
+    })();
+
+    try {
+      return await sessionInitPromiseRef.current;
+    } finally {
+      sessionInitPromiseRef.current = null;
+    }
+  }, [sessionId]);
+
   // Session persistence - restore from localStorage if available
   useEffect(() => {
     const initSession = async () => {
       try {
-        // Check for existing session
+        // Do NOT call the backend on page load (Render cold start causes long wait + perceived failure).
+        // We restore locally immediately, and restore server data in the background with a short timeout.
         const savedSession = localStorage.getItem('matchmycv_session');
         if (savedSession) {
           const { sessionId: savedId, step } = JSON.parse(savedSession);
-          // Validate session still exists on server
-          try {
-            const res = await fetch(`/api/v1/session/${savedId}`);
-            if (res.ok) {
-              setSessionId(savedId);
-              // Restore full UI state (prevents blank screen on refresh)
+          if (savedId) {
+            setSessionId(savedId);
+            setCurrentStep(step || 0);
+
+            // Restore full UI state in background (short timeout); if it fails, fall back to a safe step.
+            (async () => {
               try {
-                const data = await getSessionData(savedId);
+                const res = await fetchWithTimeout(`/api/v1/session/${savedId}/data`, undefined, 6000);
+                if (!res.ok) throw new Error("restore_failed");
+                const data = await res.json();
                 if (data.gap_analysis) setGapAnalysis(data.gap_analysis);
                 if (Array.isArray(data.questions)) setQuestions(data.questions);
                 if (typeof data.current_question_index === 'number') setCurrentQuestionIndex(data.current_question_index);
                 if (data.comparison) setComparison(data.comparison);
                 if (data.has_generated_cv) setIsGenerated(true);
-                // If the saved step requires data that doesn't exist, fall back gracefully
+
                 const desiredStep = step || 0;
-                if (desiredStep >= 2 && !data.gap_analysis) {
-                  setCurrentStep(1);
-                } else if (desiredStep >= 3 && (!data.questions || data.questions.length === 0)) {
-                  setCurrentStep(2);
-                } else {
-                  setCurrentStep(desiredStep);
-                }
+                if (desiredStep >= 2 && !data.gap_analysis) setCurrentStep(1);
+                else if (desiredStep >= 3 && (!data.questions || data.questions.length === 0)) setCurrentStep(2);
+                else setCurrentStep(desiredStep);
               } catch {
-                // If restore fails, at least land in a non-empty step
+                // Avoid blank page if backend is asleep or session no longer exists.
                 setCurrentStep(Math.min(step || 0, 1));
               }
-              return;
-            }
-          } catch {
-            // Session expired, create new one
+            })();
           }
+          return;
         }
-        
-        const { session_id } = await createSession();
-        setSessionId(session_id);
-        localStorage.setItem('matchmycv_session', JSON.stringify({ sessionId: session_id, step: 0 }));
       } catch {
         setError("Unable to connect. Please refresh the page.");
       }
     };
     initSession();
-  }, []);
+  }, [fetchWithTimeout]);
 
   // Save session state on step change
   useEffect(() => {
@@ -108,27 +159,51 @@ export default function Home() {
   }, [sessionId, currentStep]);
 
   const handleUpload = useCallback(async (file: File) => {
-    if (!sessionId) return;
     setIsLoading(true);
     setError(null);
     try {
-      await uploadCV(sessionId, file);
+      let sid = sessionId ?? await ensureSession();
+      try {
+        await uploadCV(sid, file);
+      } catch (e: any) {
+        // If session was lost (e.g. backend restart), recreate once and retry.
+        if (String(e?.message || "").toLowerCase().includes("session not found")) {
+          sid = (await createSession()).session_id;
+          setSessionId(sid);
+          localStorage.setItem("matchmycv_session", JSON.stringify({ sessionId: sid, step: 0 }));
+          await uploadCV(sid, file);
+        } else {
+          throw e;
+        }
+      }
       setCurrentStep(1);
     } catch (err: any) {
       setError(err.message || "Failed to upload CV. Please try again.");
     } finally {
       setIsLoading(false);
     }
-  }, [sessionId]);
+  }, [sessionId, ensureSession]);
 
   const handleAnalyze = useCallback(async (jobDescription: string) => {
-    if (!sessionId) return;
     setIsLoading(true);
     setError(null);
     try {
-      const result = await analyzeCV(sessionId, jobDescription);
+      let sid = sessionId ?? await ensureSession();
+      let result: any;
+      try {
+        result = await analyzeCV(sid, jobDescription);
+      } catch (e: any) {
+        if (String(e?.message || "").toLowerCase().includes("session not found")) {
+          sid = (await createSession()).session_id;
+          setSessionId(sid);
+          localStorage.setItem("matchmycv_session", JSON.stringify({ sessionId: sid, step: 0 }));
+          // Analyze requires CV uploaded; fall back gracefully.
+          throw new Error("Session expired. Please re-upload your CV.");
+        }
+        throw e;
+      }
       setGapAnalysis(result.gap_analysis);
-      const questionsResult = await getQuestions(sessionId);
+      const questionsResult = await getQuestions(sid);
       setQuestions(questionsResult.questions);
       setCurrentStep(2);
     } catch (err: any) {
@@ -136,7 +211,7 @@ export default function Home() {
     } finally {
       setIsLoading(false);
     }
-  }, [sessionId]);
+  }, [sessionId, ensureSession]);
 
   const handleStartInterview = useCallback(() => {
     setCurrentQuestionIndex(0);
